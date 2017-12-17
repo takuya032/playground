@@ -3,6 +3,9 @@ import {
   Icon
 } from 'semantic-ui-react';
 
+/*css*/
+import './scss/verticalLineInputForm.css'
+
 const clickStyle = {
   cursor: 'pointer',
 }
@@ -16,7 +19,7 @@ class VerticalLineInputForm extends Component {
 
     this.state = {
       verticalLineCount: 5,
-    }
+    };
     this.handleOnClickUpOrDown = this.handleOnClickUpOrDown.bind(this);
   }
 
@@ -36,7 +39,10 @@ class VerticalLineInputForm extends Component {
 
   render() {
     return (
-      <div>
+      <div
+        className="input-group"
+      >
+        参加人数
         <Icon
           name="triangle down"
           size="large"

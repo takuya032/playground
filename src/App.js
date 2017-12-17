@@ -3,13 +3,16 @@ import './App.css';
 
 // page component
 import VerticalLineInputForm from './VerticalLineInputForm';
+// import VerticalLine from './VerticalLine';
+import GoalInputform from './GoalInputform';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        hello world
         <VerticalLineInputForm />
+        {/* <VerticalLine /> */}
+        <GoalInputform />
       </div>
     );
   }
