@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {
   Grid,
 } from 'semantic-ui-react';
-import './scss/verticalLine.css'
+import './../scss/verticalLine.css'
 
 class VerticalLine extends Component {
   constructor(props) {

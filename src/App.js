@@ -1,19 +1,27 @@
 import React, { Component } from 'react';
+import { Provider } from 'react-redux';
+import store from './store/storeSettings';
 import './App.css';
 
 // page component
-import VerticalLineInputForm from './VerticalLineInputForm';
-// import VerticalLine from './VerticalLine';
-import GoalInputform from './GoalInputform';
+import ParticipantsInputForm from './containers/participants';
+// import VerticalLine from './components/VerticalLine';
+import GoalInputform from './containers/goals';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <VerticalLineInputForm />
-        {/* <VerticalLine /> */}
-        <GoalInputform />
-      </div>
+      <Provider
+        store={store}
+      >
+        <div
+          className="app"
+        >
+          <ParticipantsInputForm />
+          {/* <VerticalLine /> */}
+          <GoalInputform />
+        </div>
+      </Provider>
     );
   }
 }

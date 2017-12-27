@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import {
   Form,
   Grid,
   Button,
   List,
-  Input
+  Input,
+  Icon
 } from 'semantic-ui-react';
 
-import './scss/goalInputForm.css'
+import './../scss/goalInputForm.css'
 
 class GoalInputform extends Component {
   constructor(props) {
@@ -16,12 +18,11 @@ class GoalInputform extends Component {
     this.state = {
       goals: [],
       textValue: '',
-      dropId: '',
     }
 
     this.handleOnInput = this.handleOnInput.bind(this);
     this.handleOnSubmit = this.handleOnSubmit.bind(this);
-    this.handleMouseOverDisplayRemoveButton = this.handleMouseOverDisplayRemoveButton.bind(this);
+    this.handleClickRemove = this.handleClickRemove.bind(this);
   }
 
   handleOnInput(e) {
@@ -35,13 +36,19 @@ class GoalInputform extends Component {
       this.setState({
         goals: this.state.goals.concat([this.state.textValue])
       })
+      let newGoals = this.props.goals.datas.concat({
+        name: this.state.textValue,
+        postion: '',
+      });
+      this.props.addGoal(newGoals);
     } else {
       return null;
     }
   }
 
-  handleMouseOverDisplayRemoveButton() {
-
+  handleClickRemove(e) {
+    console.log(e.target.parentNode.id);
+    console.log(this.props);
   }
 
   render() {
@@ -76,16 +83,20 @@ class GoalInputform extends Component {
               <List
                 as="ul"
               >
-                {this.state.goals.map((goal, index) => {
+                {this.props.goals.datas.map((goal, index) => {
                   return(
                     <List.Item
                       as="li"
                       key={index}
                       className="goal-item"
                       id={`goal_${index}`}
-                      onMouseOver={this.handleMouseOverDropGoal}
                     >
-                      {goal}
+                      {goal.name}
+                      <Icon
+                        name="remove"
+                        size="small"
+                        onClick={this.handleClickRemove}
+                      />
                     </List.Item>
                   );
                 })}

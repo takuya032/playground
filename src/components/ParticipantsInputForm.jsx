@@ -4,7 +4,7 @@ import {
 } from 'semantic-ui-react';
 
 /*css*/
-import './scss/verticalLineInputForm.css'
+import './../scss/verticalLineInputForm.css'
 
 const clickStyle = {
   cursor: 'pointer',
@@ -13,13 +13,10 @@ const clickStyle = {
 const FINAL_COUNT = 10;
 const LAST_COUNT = 3;
 
-class VerticalLineInputForm extends Component {
+class ParticipantsInputForm extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      verticalLineCount: 5,
-    };
     this.handleOnClickUpOrDown = this.handleOnClickUpOrDown.bind(this);
   }
 
@@ -32,9 +29,7 @@ class VerticalLineInputForm extends Component {
         count--;
         break;
     }
-    this.setState({
-      verticalLineCount: count,
-    });
+    this.props.participantsChangeCount(count);
   }
 
   render() {
@@ -47,16 +42,16 @@ class VerticalLineInputForm extends Component {
           name="triangle down"
           size="large"
           onClick={() => {
-            this.handleOnClickUpOrDown(this.state.verticalLineCount, "-");
+            this.handleOnClickUpOrDown(this.props.participantsCount, "-");
           }}
           style={clickStyle}
         />
-          {this.state.verticalLineCount}
+          {this.props.participantsCount}
         <Icon
           name="triangle up"
           size="large"
           onClick={() => {
-            this.handleOnClickUpOrDown(this.state.verticalLineCount, "+");
+            this.handleOnClickUpOrDown(this.props.participantsCount, "+");
           }}
           style={clickStyle}
         />
@@ -65,4 +60,4 @@ class VerticalLineInputForm extends Component {
   }
 }
 
-export default VerticalLineInputForm;
+export default ParticipantsInputForm;
