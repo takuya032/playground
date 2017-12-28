@@ -22,7 +22,6 @@ class GoalInputform extends Component {
 
     this.handleOnInput = this.handleOnInput.bind(this);
     this.handleOnSubmit = this.handleOnSubmit.bind(this);
-    this.handleClickRemove = this.handleClickRemove.bind(this);
   }
 
   handleOnInput(e) {
@@ -33,9 +32,6 @@ class GoalInputform extends Component {
 
   handleOnSubmit() {
     if (this.state.textValue) {
-      this.setState({
-        goals: this.state.goals.concat([this.state.textValue])
-      })
       let newGoals = this.props.goals.datas.concat({
         name: this.state.textValue,
         postion: '',
@@ -46,9 +42,11 @@ class GoalInputform extends Component {
     }
   }
 
-  handleClickRemove(e) {
-    console.log(e.target.parentNode.id);
-    console.log(this.props);
+  handleClickRemove(index) {
+    let newGoals = this.props.goals.datas.filter((goal, i) => {
+      return i != index;
+    });
+    this.props.removeGoal(newGoals);
   }
 
   render() {
@@ -62,6 +60,8 @@ class GoalInputform extends Component {
           >
             <Grid.Column
               width={7}
+              computer={3}
+              tablet={5}
             >
               <Form
                 reply
@@ -78,6 +78,8 @@ class GoalInputform extends Component {
             </Grid.Column>
             <Grid.Column
               width={7}
+              computer={3}
+              tablet={5}
             >
               <h4>ゴール選択肢</h4>
               <List
@@ -95,7 +97,8 @@ class GoalInputform extends Component {
                       <Icon
                         name="remove"
                         size="small"
-                        onClick={this.handleClickRemove}
+                        className="remove-button"
+                        onClick={this.handleClickRemove.bind(this, index)}
                       />
                     </List.Item>
                   );
