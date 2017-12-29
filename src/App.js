@@ -7,6 +7,7 @@ import './App.css';
 import ParticipantsInputForm from './containers/participants';
 // import VerticalLine from './components/VerticalLine';
 import GoalInputform from './containers/goals';
+import AmidaCreateButton from './containers/amidaCreateButton';
 
 class App extends Component {
   render() {
@@ -20,6 +21,7 @@ class App extends Component {
           <ParticipantsInputForm />
           {/* <VerticalLine /> */}
           <GoalInputform />
+          <AmidaCreateButton />
         </div>
       </Provider>
     );
