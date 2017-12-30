@@ -11,12 +11,22 @@
   border-bottom: var(--line);
 }
 
+tbody {
+  position: relative;
+  left: 35px;
+}
+
 tbody td {
-  width: 75px;
+  width: 70px;
   height: 20px;
 }
 
 table {
   border-collapse: collapse;
   border-spacing: 0;
+}
+
+.termineitor {
+  position: relative;
+  right: +35px;
 }

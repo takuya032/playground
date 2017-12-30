@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import './../scss/amidaTable.css';
-import { amidaTableArray } from "./../utils/index";
+import { amidaTableArray, randomGoals } from "./../utils/index";
 
 class AmidaTable extends Component {
   constructor(props) {
@@ -9,13 +9,14 @@ class AmidaTable extends Component {
 
     this.state = {
       randomGoals: [],
-      amidaTable: [[false, false, true], [true, false, false], [false, true, false]]
+      amidaTable: [],
     }
   }
 
   componentWillMount() {
     this.setState({
-      amidaTable: amidaTableArray(3),
+      amidaTable: amidaTableArray(8),
+      randomGoals: randomGoals([{name: 'takuya'}, {name:'yuki'}, {name: 'majide'}]),
     })
   }
 
@@ -24,9 +25,9 @@ class AmidaTable extends Component {
       <table>
         <thead>
           <tr>
-            <th>なんでや</th>
-            <th>なんでや</th>
-            <th>なんでや</th>
+            <th className="termineitor">なんでや</th>
+            <th className="termineitor">なんでや</th>
+            <th className="termineitor">なんでや</th>
           </tr>
         </thead>
         <tbody>
@@ -50,9 +51,16 @@ class AmidaTable extends Component {
         </tbody>
         <tfoot>
           <tr>
-            <th>なんでや</th>
-            <th>なんでや</th>
-            <th>なんでや</th>
+            {this.state.randomGoals.map((goal, index) => {
+              return(
+                <th
+                  className="termineitor"
+                  key={index}
+                >
+                  {goal.name}
+                </th>
+              );
+            })}
           </tr>
         </tfoot>
       </table>

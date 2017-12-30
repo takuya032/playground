@@ -24,3 +24,15 @@ export const amidaTableArray = (participantsCount) => {
   }
   return arrs;
 }
+
+export const randomGoals = (goals) => {
+  let newGoals = goals;
+  let i = newGoals.length;
+  while(i){
+    var j = Math.floor(Math.random()*i);
+    var t = newGoals[--i];
+    newGoals[i] = newGoals[j];
+    newGoals[j] = t;
+  }
+  return newGoals;
+}
