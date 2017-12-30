@@ -1,7 +1,7 @@
 const OPEN_AMIDA = "OPEN_AMIDA";
 
 const initState = {
-  isOpen: false
+  isOpen: false,
 }
 
 const reducers = (state = initState, action) => {

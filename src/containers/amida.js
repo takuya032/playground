@@ -6,7 +6,7 @@ import {
   bindActionCreators
 } from 'redux';
 
-import Component from './../components/AmidaCreateButton';
+import Component from './../components/Amida';
 
 import * as actions from './../actions/amidas';
 
@@ -14,6 +14,8 @@ import * as actions from './../actions/amidas';
 const mapStateToProps = state => (
   {
     isOpen: state.amidas.isOpen,
+    goals: state.goals,
+    participants: state.participants,
   }
 );
 

@@ -1,0 +1,22 @@
+:root {
+  --line: 4px solid #999;
+  --red-line: 4px solid red;
+}
+
+.vertical-line {
+  border-left: var(--line);
+}
+
+.bottom-line {
+  border-bottom: var(--line);
+}
+
+tbody td {
+  width: 75px;
+  height: 20px;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}

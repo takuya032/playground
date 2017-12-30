@@ -4,7 +4,7 @@ import {
   Button,
 } from 'semantic-ui-react';
 
-import './../scss/amidaCreateButton.css'
+import './../scss/amidaCreateButton.css';
 
 class AmidaCreateButton extends Component {
   constructor(props) {
@@ -20,23 +20,15 @@ class AmidaCreateButton extends Component {
 
   render() {
     return(
-      <Grid
-        container
+      <Button
+        circular
+        size="massive"
+        className="create-button"
+        primary
+        onClick={this.handleAmidaOpen}
       >
-        <Grid.Row
-          centered
-        >
-          <Button
-            circular
-            size="massive"
-            className="create-button"
-            primary
-            onClick={this.handleAmidaOpen}
-          >
-            作成
-          </Button>
-        </Grid.Row>
-      </Grid>
+        作成
+      </Button>
     );
   }
 }
