@@ -18,18 +18,36 @@ class ParticipantsInputForm extends Component {
     super(props);
 
     this.handleOnClickUpOrDown = this.handleOnClickUpOrDown.bind(this);
+    this.addedParticipant = this.addedParticipant.bind(this);
+    this.removedParticipant = this.removedParticipant.bind(this);
   }
 
   handleOnClickUpOrDown(count, calculation) {
     switch (calculation) {
       case "+":
         count++;
+        this.props.addParticipant(this.addedParticipant());
         break;
       case "-":
         count--;
+        this.props.removeParticipant(this.removedParticipant());
         break;
     }
     this.props.participantsChangeCount(count);
+  }
+
+  addedParticipant() {
+    let newParticipants = this.props.participants.datas.concat(
+      this.props.participants.target
+    );
+    return newParticipants;
+  }
+
+  removedParticipant() {
+    let newParticipants = this.props.participants.datas.filter((participant, i, arr) => {
+      return i < arr.length - 1
+    });
+    return newParticipants
   }
 
   render() {

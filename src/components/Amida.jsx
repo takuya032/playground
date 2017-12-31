@@ -27,9 +27,9 @@ class Amida extends Component {
         <Grid.Row
           centered
         >
-          <AmidaTable
+          {this.props.isOpen ? <AmidaTable
             {...this.props}
-          />
+          /> : null}
         </Grid.Row>
       </Grid>
     );

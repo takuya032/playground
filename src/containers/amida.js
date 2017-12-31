@@ -9,6 +9,7 @@ import {
 import Component from './../components/Amida';
 
 import * as actions from './../actions/amidas';
+import * as participantsActions from './../actions/participants';
 
 // mapStateToProps
 const mapStateToProps = state => (
@@ -24,7 +25,8 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
     Object.assign(
       {},
-      actions
+      actions,
+      participantsActions,
     ),
     dispatch
   );

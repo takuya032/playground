@@ -30,3 +30,18 @@ table {
   position: relative;
   right: +35px;
 }
+
+.name-input {
+  width: 68px;
+  height: 25px;
+  padding: 0 !important;
+}
+
+.th-block {
+  width: 70px;
+}
+
+.amida-table {
+  position: relative;
+  left: 35px;
+}

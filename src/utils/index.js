@@ -1,4 +1,4 @@
-const BOOL_RATE = [true, false, false, false];
+const BOOL_RATE = [true, false, false, false, false];
 const AMIDA_TABLE_COUNT = 25;
 const MOST_UNDER_LINE = AMIDA_TABLE_COUNT - 1;
 
@@ -28,11 +28,13 @@ export const amidaTableArray = (participantsCount) => {
 export const randomGoals = (goals) => {
   let newGoals = goals;
   let i = newGoals.length;
+
   while(i){
     var j = Math.floor(Math.random()*i);
     var t = newGoals[--i];
     newGoals[i] = newGoals[j];
     newGoals[j] = t;
   }
+
   return newGoals;
 }

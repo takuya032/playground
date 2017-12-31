@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 
+import {
+  Input,
+  Button
+} from 'semantic-ui-react';
 import './../scss/amidaTable.css';
 import { amidaTableArray, randomGoals } from "./../utils/index";
 
@@ -8,26 +12,59 @@ class AmidaTable extends Component {
     super(props)
 
     this.state = {
+      participants: [],
       randomGoals: [],
       amidaTable: [],
     }
+
+    this.handleNameSave = this.handleNameSave.bind(this);
   }
 
   componentWillMount() {
     this.setState({
-      amidaTable: amidaTableArray(8),
-      randomGoals: randomGoals([{name: 'takuya'}, {name:'yuki'}, {name: 'majide'}]),
+      participants: this.props.participants.datas,
+      amidaTable: amidaTableArray(5),
+      randomGoals: randomGoals(this.props.goals.datas),
     })
+  }
+
+  handleGo(pi, e) {
+    let name = e.target.previousElementSibling.value
+    this.handleNameSave(pi, name);
+  }
+
+  handleNameSave(index, name) {
+    let participants = this.props.participants.datas;
+    name = name ? name : `P_${index + 1}`
+    participants[index].name = name;
+    this.props.changeParticipant(participants);
   }
 
   render() {
     return(
-      <table>
+      <table
+        className="amida-table"
+      >
         <thead>
           <tr>
-            <th className="termineitor">なんでや</th>
-            <th className="termineitor">なんでや</th>
-            <th className="termineitor">なんでや</th>
+            {this.state.participants.map((participant, pi) =>{
+              return(
+                <th
+                  className="termineitor th-block"
+                  key={pi}
+                >
+                  <input
+                    className="name-input"
+                  />
+                  <button
+                    type="submit"
+                    onClick={this.handleGo.bind(this, pi)}
+                  >
+                    Go
+                  </button>
+                </th>
+              );
+            })}
           </tr>
         </thead>
         <tbody>
