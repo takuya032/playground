@@ -10,6 +10,7 @@ import Component from './../components/Amida';
 
 import * as actions from './../actions/amidas';
 import * as participantsActions from './../actions/participants';
+import * as goalActions from './../actions/goals';
 
 // mapStateToProps
 const mapStateToProps = state => (
@@ -27,6 +28,7 @@ const mapDispatchToProps = (dispatch) => {
       {},
       actions,
       participantsActions,
+      goalActions,
     ),
     dispatch
   );

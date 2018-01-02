@@ -5,10 +5,10 @@ const CHNGE_PARTCIPANT = 'CHNGE_PARTCIPANT';
 
 const initState = {
   participantsCount: 5,
-  datas: [{name: '', goals: ''}, {name: '', goals: ''}, {name: '', goals: ''}, {name: '', goals: ''}, {name: '', goals: ''},],
+  datas: [{name: '', goal: ''}, {name: '', goal: ''}, {name: '', goal: ''}, {name: '', goal: ''}, {name: '', goal: ''},],
   target: {
     name: '',
-    goals: '',
+    goal: '',
   },
 }
 

@@ -34,7 +34,7 @@ class GoalInputform extends Component {
     if (this.state.textValue) {
       let newGoals = this.props.goals.datas.concat({
         name: this.state.textValue,
-        postion: '',
+        isOpen: false,
       });
       this.props.addGoal(newGoals);
     } else {

@@ -1,5 +1,6 @@
 const ADD_GOAL = 'ADD_GOAL';
 const REMOVE_GOAL = 'REMOVE_GOAL';
+const OPEN_GOAL = 'OPEN_GOAL';
 
 const initState = {
   goalsCount: 5,
@@ -22,6 +23,15 @@ const reducers = (state = initState, action) => {
     )
   }
   case REMOVE_GOAL: {
+    return Object.assign(
+      {},
+      state,
+      {
+        datas: action.datas,
+      }
+    )
+  }
+  case OPEN_GOAL: {
     return Object.assign(
       {},
       state,

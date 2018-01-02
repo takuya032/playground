@@ -25,7 +25,9 @@ class AmidaTable extends Component {
       participantsPassage: [],
     }
 
-    this.handleNameSave = this.handleNameSave.bind(this);
+    this.handleNameSave  = this.handleNameSave.bind(this);
+    this.handleChangeRed = this.handleChangeRed.bind(this);
+    this.handleOpenGoal  = this.handleOpenGoal.bind(this);
   }
 
   componentWillMount() {
@@ -34,16 +36,27 @@ class AmidaTable extends Component {
       amidaTable: amidaTableArray(this.props.participants.participantsCount),
       randomGoals: randomGoals(this.props.goals.datas),
     })
+
   }
 
   componentDidMount() {
     let allPassage = []
+    let participants = this.props.participants.datas;
     for(let i=0; i < this.props.participants.participantsCount; i ++) {
-      allPassage.push(passageToGoal(this.state.amidaTable, i));
+      let passage = passageToGoal(this.state.amidaTable, i);
+      participants[i].goal = passage[passage.length-1];
+      allPassage.push(passage);
     }
+    this.props.changeParticipant(participants);
     this.setState({
       participantsPassage: allPassage,
     })
+  }
+
+  handleGo(index, e) {
+    this.handleNameSave(index, e)
+    this.handleChangeRed(index)
+    this.handleOpenGoal(index)
   }
 
   handleNameSave(index, e) {
@@ -57,6 +70,13 @@ class AmidaTable extends Component {
   handleChangeRed(index) {
     removeAllRed();
     changeRed(this.state.participantsPassage[index]);
+  }
+
+  handleOpenGoal(index) {
+    let openGoal = this.props.participants.datas[index].goal;
+    let goals = this.props.goals.datas;
+    goals[openGoal].isOpen = true;
+    this.props.openGoal(goals);
   }
 
   render() {
@@ -78,8 +98,7 @@ class AmidaTable extends Component {
                   <button
                     type="submit"
                     onClick={
-                      this.handleNameSave.bind(this, pi),
-                      this.handleChangeRed.bind(this, pi)
+                      this.handleGo.bind(this, pi)
                     }
                   >
                     Go
@@ -101,7 +120,6 @@ class AmidaTable extends Component {
                   return(
                     <td
                       className={column ? "vertical-line bottom-line" : "vertical-line"}
-                      // className={column ? "vertical-red-line bottom-red-line" : "vertical-red-line"}
                       key={ci}
                     >
                     </td>
@@ -119,7 +137,7 @@ class AmidaTable extends Component {
                   className="termineitor"
                   key={index}
                 >
-                  {goal.name}
+                  {goal.isOpen ? goal.name: null}
                 </th>
               );
             })}

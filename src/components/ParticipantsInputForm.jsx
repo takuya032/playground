@@ -38,7 +38,7 @@ class ParticipantsInputForm extends Component {
 
   addedParticipant() {
     let newParticipants = this.props.participants.datas.concat(
-      this.props.participants.target
+      {name: '', goal:''}
     );
     return newParticipants;
   }
