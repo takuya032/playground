@@ -11,6 +11,14 @@
   border-bottom: var(--line);
 }
 
+.vertical-red-line {
+  border-left: var(--red-line);
+}
+
+.bottom-red-line {
+  border-bottom: var(--red-line);
+}
+
 tbody {
   position: relative;
   left: 35px;

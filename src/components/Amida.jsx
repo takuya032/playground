@@ -30,6 +30,9 @@ class Amida extends Component {
           {this.props.isOpen ? <AmidaTable
             {...this.props}
           /> : null}
+          {/* <AmidaTable
+            {...this.props}
+          /> */}
         </Grid.Row>
       </Grid>
     );

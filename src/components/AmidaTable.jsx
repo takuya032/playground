@@ -5,7 +5,14 @@ import {
   Button
 } from 'semantic-ui-react';
 import './../scss/amidaTable.css';
-import { amidaTableArray, randomGoals } from "./../utils/index";
+import {
+  amidaTableArray,
+  randomGoals,
+  setParticipantsGoal,
+  passageToGoal,
+  changeRed,
+  removeAllRed,
+} from "./../utils/index";
 
 class AmidaTable extends Component {
   constructor(props) {
@@ -15,6 +22,7 @@ class AmidaTable extends Component {
       participants: [],
       randomGoals: [],
       amidaTable: [],
+      participantsPassage: [],
     }
 
     this.handleNameSave = this.handleNameSave.bind(this);
@@ -23,21 +31,32 @@ class AmidaTable extends Component {
   componentWillMount() {
     this.setState({
       participants: this.props.participants.datas,
-      amidaTable: amidaTableArray(5),
+      amidaTable: amidaTableArray(this.props.participants.participantsCount),
       randomGoals: randomGoals(this.props.goals.datas),
     })
   }
 
-  handleGo(pi, e) {
-    let name = e.target.previousElementSibling.value
-    this.handleNameSave(pi, name);
+  componentDidMount() {
+    let allPassage = []
+    for(let i=0; i < this.props.participants.participantsCount; i ++) {
+      allPassage.push(passageToGoal(this.state.amidaTable, i));
+    }
+    this.setState({
+      participantsPassage: allPassage,
+    })
   }
 
-  handleNameSave(index, name) {
+  handleNameSave(index, e) {
+    let name = e.target.previousElementSibling.value
     let participants = this.props.participants.datas;
     name = name ? name : `P_${index + 1}`
     participants[index].name = name;
     this.props.changeParticipant(participants);
+  }
+
+  handleChangeRed(index) {
+    removeAllRed();
+    changeRed(this.state.participantsPassage[index]);
   }
 
   render() {
@@ -58,7 +77,10 @@ class AmidaTable extends Component {
                   />
                   <button
                     type="submit"
-                    onClick={this.handleGo.bind(this, pi)}
+                    onClick={
+                      this.handleNameSave.bind(this, pi),
+                      this.handleChangeRed.bind(this, pi)
+                    }
                   >
                     Go
                   </button>
@@ -67,7 +89,9 @@ class AmidaTable extends Component {
             })}
           </tr>
         </thead>
-        <tbody>
+        <tbody
+          id="amida_lines"
+        >
           {this.state.amidaTable.map((line, li) => {
             return(
               <tr
@@ -77,6 +101,7 @@ class AmidaTable extends Component {
                   return(
                     <td
                       className={column ? "vertical-line bottom-line" : "vertical-line"}
+                      // className={column ? "vertical-red-line bottom-red-line" : "vertical-red-line"}
                       key={ci}
                     >
                     </td>
