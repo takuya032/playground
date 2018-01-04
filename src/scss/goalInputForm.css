@@ -8,3 +8,7 @@
   margin-right: 5% !important;
   cursor: pointer;
 }
+
+.not-add {
+  cursor: not-allowed !important;
+}

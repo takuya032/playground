@@ -18,6 +18,7 @@ const mapStateToProps = state => (
     isOpen: state.amidas.isOpen,
     goals: state.goals,
     participants: state.participants,
+    participantsCount: state.participants.participantsCount,
   }
 );
 

@@ -4,3 +4,7 @@
   height: 100px;
   margin-top: 15px !important;
 }
+
+.not-create {
+  cursor: not-allowed !important;
+}

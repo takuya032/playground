@@ -18,10 +18,16 @@ class GoalInputform extends Component {
     this.state = {
       goals: [],
       textValue: '',
+      canAdd: true,
     }
 
     this.handleOnInput = this.handleOnInput.bind(this);
     this.handleOnSubmit = this.handleOnSubmit.bind(this);
+    this.checkCanAdd = this.checkCanAdd.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.checkCanAdd(nextProps);
   }
 
   handleOnInput(e) {
@@ -49,6 +55,15 @@ class GoalInputform extends Component {
     this.props.removeGoal(newGoals);
   }
 
+  checkCanAdd(props) {
+    if (props.goals.datas.length >= props.participantsCount) {
+      this.setState({
+        canAdd: false,
+      })
+      return null;
+    }
+  }
+
   render() {
     return(
       <div>
@@ -65,15 +80,22 @@ class GoalInputform extends Component {
             >
               <Form
                 reply
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  this.handleOnSubmit();
-                }}
+                onSubmit={this.state.canAdd ?
+                  (e) => {
+                    e.preventDefault();
+                    this.handleOnSubmit();
+                  } : null
+                }
               >
                 <Form.TextArea
                   onChange={this.handleOnInput}
                 />
-                <Button content='追加' floated="right" icon='edit' primary />
+                <Button
+                  content='追加'
+                  floated="right"
+                  icon='edit'
+                  className={this.state.canAdd ? "primary" : "not-add"}
+                />
               </Form>
             </Grid.Column>
             <Grid.Column
