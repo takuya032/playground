@@ -61,6 +61,11 @@ class GoalInputform extends Component {
         canAdd: false,
       })
       return null;
+    } else if (props.goals.datas.length < props.participantsCount) {
+      this.setState({
+        canAdd: true,
+      })
+      return null;
     }
   }
 
