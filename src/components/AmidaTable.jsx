@@ -20,11 +20,10 @@ class AmidaTable extends Component {
 
     this.state = {
       participants: [],
-      randomGoals: [],
       amidaTable: [],
       participantsPassage: [],
+      goals: [],
     }
-
     this.handleNameSave  = this.handleNameSave.bind(this);
     this.handleChangeRed = this.handleChangeRed.bind(this);
     this.handleOpenGoal  = this.handleOpenGoal.bind(this);
@@ -34,9 +33,9 @@ class AmidaTable extends Component {
     this.setState({
       participants: this.props.participants.datas,
       amidaTable: amidaTableArray(this.props.participants.participantsCount),
-      randomGoals: randomGoals(this.props.goals.datas),
-    })
-
+      goals: Object.assign({}, this.props.goals, { datas: randomGoals(this.props.goals.datas) }),
+    });
+    console.log(this.state);
   }
 
   componentDidMount() {
@@ -50,7 +49,7 @@ class AmidaTable extends Component {
     this.props.changeParticipant(participants);
     this.setState({
       participantsPassage: allPassage,
-    })
+    });
   }
 
   handleGo(index, e) {
@@ -73,10 +72,9 @@ class AmidaTable extends Component {
   }
 
   handleOpenGoal(index) {
-    let openGoal = this.props.participants.datas[index].goal;
-    let goals = this.props.goals.datas;
-    goals[openGoal].isOpen = true;
-    this.props.openGoal(goals);
+    let goal = this.props.participants.datas[index].goal;
+    let goals = this.state.goals.datas;
+    goals[goal].isOpen = true;
   }
 
   render() {
@@ -131,7 +129,7 @@ class AmidaTable extends Component {
         </tbody>
         <tfoot>
           <tr>
-            {this.state.randomGoals.map((goal, index) => {
+            {this.state.goals.datas.map((goal, index) => {
               return(
                 <th
                   className="termineitor"

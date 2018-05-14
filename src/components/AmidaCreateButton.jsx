@@ -37,7 +37,6 @@ class AmidaCreateButton extends Component {
     }
   }
 
-
   handleAmidaOpen() {
     this.props.openAmida();
   }
@@ -48,8 +47,8 @@ class AmidaCreateButton extends Component {
         circular
         size="massive"
         className="create-button primary"
-        className={this.state.canCreate ? "create-button primary": "create-button not-create"  }
-        onClick={this.state.canCreate ? this.handleAmidaOpen: null}
+        className={this.state.canCreate ? "create-button primary": "create-button not-create"}
+        onClick={this.state.canCreate ? this.props.openAmida : null}
       >
         作成
       </Button>
